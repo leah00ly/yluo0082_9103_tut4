@@ -1,12 +1,17 @@
 # QUIZ 8
-## Imaging Technique Inspiration:
-The technique I find inspiring is **Halftone**, it is a graphic technique that simulates continuous-tone imagery through the use of **dots**, varying in size (pulse-width modulation) in spacing (frequency modulation) or both, thus generating a gradient-like effect. 
+## 1.Imaging Technique Inspiration:
+The technique I find inspiring is **Halftone**, it is a graphic technique that simulates continuous-tone imagery through the use of **dots**, varying in *size* (pulse-width modulation) in *spacing* (frequency modulation) or both, thus generating a gradient-like effect. 
 
-I want to incorporate the Halftone screening technique in my major project combining multiple layers of screens with dots of different shapes and colors to recreate the original painting. It is a highly adaptive technique with abundant screening choices, which helps to present the essence of the original piece and attach a retro aesthetic to it.
+I want to incorporate the Halftone screening technique in my major project using dots of different sizes, spacings, shapes, and colors to recreate the original painting. It is a highly adaptive technique with abundant screening choices, which helps to present the essence of the original piece and attach a **retro aesthetic** to it.
 
-![Halftone artwork 1](https://www.pinterest.com.au/pin/599893612873173829/)
-![Halftone artwork 2](https://www.pinterest.com.au/pin/599893612887381846/)
-![Halftone artwork 3](https://www.pinterest.com.au/pin/599893612887001112/)
-![Halftone artwork 4](https://www.pinterest.com.au/pin/599893612892990071/)
+![Halftone_Face](/assets/Halftone_Face.jpg)
+![Halftone_the Queen](/assets/Halftone_the%20Queen.jpg)
+![Halftone_Astronaut](/assets/Halftone_Astronaut.jpg)
+![Halftone_Collage](/assets/Halftone_Collage.jpg)
 
-## Coding Technique Exploration
+## 2.Coding Technique Exploration
+**Floyd-Steinberg Dithering** is currently one of the most popular methods used for halftoning. Its algorithm is based on *error dispersion*: for each pixel, it first identifies the closest available color, computes the difference between the pixel's value and the chosen color, and then distributes these error values proportionally to neighboring, unprocessed pixels. When processing these neighbors, it adds the errors and ensures values stay within the allowed range, creating halftone-like images with various shades and colors.
+
+
+![Output Image](/assets/Output%20image.jpg)
+[Code](https://scipython.com/blog/floyd-steinberg-dithering/)
