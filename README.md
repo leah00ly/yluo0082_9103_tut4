@@ -14,4 +14,4 @@ I want to incorporate the Halftone screening technique in my major project using
 
 ![Output Image](/assets/Output%20image.jpg)
 
-[**Click this link to see the mechanism and code of the above image**](https://scipython.com/blog/floyd-steinberg-dithering/)
+[**Click this link to see the mechanism and code of the above image.**](https://scipython.com/blog/floyd-steinberg-dithering/)
