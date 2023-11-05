@@ -103,9 +103,15 @@ function draw() {
   translate(-200, -100);// Move the origin point for rotation
   rotate(50);// Rotate the canvas to tilt the rows and columns
 
+  // Apply easing to smoothly interpolate the current radius to the target radius
+  for (let circle of circles) {
+    let easing = 0.5;
+    let targetRadius = map(level, 0, 1, 50, 80);
+    circle.r = lerp(circle.r, targetRadius, easing);
+  }
+
   // Call the class to draw the wheels
   for (let circle of circles) {
-    circle.r = map(level, 0, 1, 50, 80);
     circle.display();
   }
   
