@@ -4,11 +4,15 @@ let backgroundCircles = [];// Create an array to store background circles
 var song;
 var button;
 var slider;
+var amplitude;
 
 function setup() {
   createCanvas(500, 500);
   colorMode(HSB);
   background(200, 150, 60);
+  song = loadSound("sicklove.mp3", loaded);
+  amplitude = new p5.Amplitude();
+  slider = createSlider(0,1,0.5,0.05);
   
   // Initialize a counter to prevent infinite looping
   var protection = 0; 
@@ -65,16 +69,14 @@ function setup() {
     }
   }
 
-
-  song = loadSound("sicklove.mp3", loaded);
-  button = createButton("play");
-  button.mousePressed(togglePlaying);
-  song.setVolume(0.3);
-  slider = createSlider(0,1,0.5,0.);
+  song.onended(songEnded);
 }
 
+// Create a callback function to play the sound and make sure the button and the slider won't appear until the file is loaded
 function loaded(){
   console.log("loaded");
+  button = createButton("play"); 
+  button.mousePressed(togglePlaying);
 }
 
 function togglePlaying(){
@@ -89,6 +91,8 @@ function togglePlaying(){
 
 function draw() {
 
+  let level = amplitude.getLevel();
+
   // Draw the background circles
   for (let i = 0; i < backgroundCircles.length; i++) {
     fill(backgroundCircles[i].color);
@@ -101,10 +105,16 @@ function draw() {
 
   // Call the class to draw the wheels
   for (let circle of circles) {
+    circle.r = map(level, 0, 1, 50, 80);
     circle.display();
   }
-
+  
   song.setVolume(slider.value());
+}
+
+function songEnded() {
+  // Handle what to do when the song ends
+  button.html("play");
 }
 
 // Create a class of circles for the wheels
