@@ -1,6 +1,10 @@
 let circles = []; // Create an array to store the big wheels
 let backgroundCircles = [];// Create an array to store background circles
 
+var song;
+var button;
+var slider;
+
 function setup() {
   createCanvas(500, 500);
   colorMode(HSB);
@@ -61,6 +65,26 @@ function setup() {
     }
   }
 
+
+  song = loadSound("sicklove.mp3", loaded);
+  button = createButton("play");
+  button.mousePressed(togglePlaying);
+  song.setVolume(0.3);
+  slider = createSlider(0,1,0.5,0.);
+}
+
+function loaded(){
+  console.log("loaded");
+}
+
+function togglePlaying(){
+  if(!song.isPlaying()){
+    song.play();
+    button.html("pause");
+  } else{
+    song.pause();
+    button.html("play");
+  }
 }
 
 function draw() {
@@ -80,6 +104,7 @@ function draw() {
     circle.display();
   }
 
+  song.setVolume(slider.value());
 }
 
 // Create a class of circles for the wheels
