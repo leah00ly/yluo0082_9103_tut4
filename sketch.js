@@ -2,9 +2,9 @@ let circles = []; // Create an array to store the big wheels
 let backgroundCircles = [];// Create an array to store background circles
 
 var song;
-var button;
-var slider;
-var amplitude;
+var button; // Play/Pause
+var slider; // Volume modification
+var amplitude; // Sound analysis
 
 function setup() {
   createCanvas(700, 500);
@@ -12,13 +12,12 @@ function setup() {
   background(200, 150, 60);
   song = loadSound("ACDC.mp3", loaded);
   amplitude = new p5.Amplitude();
-  slider = createSlider(0,1,0.5,0.05);
-  
+  slider = createSlider(0,1,0.5,0.05);// For users to modify volume
   
   // Initialize a counter to prevent infinite looping
   var protection = 0; 
   
-  // Start a loop that continues until there are 100 non-overlapping circles
+  // Start a loop that continues until there are 100 non-overlapping circles in the background
   while (backgroundCircles.length < 100) {
 
     let overlapping = false;// Initialize a flag to track overlapping status
@@ -69,8 +68,14 @@ function setup() {
       circles.push(new Circle(x, y, 50, 16, 3)); // Add the new circle into the array
     }
   }
-
+  
+  // Execute the 'songEnded' function when the song ends
   song.onended(songEnded);
+}
+
+function songEnded() {
+  // Change the button to "play" automatically when the song ends
+  button.html("play");
 }
 
 // Create a callback function to play the sound and make sure the button and the slider won't appear until the file is loaded
@@ -80,6 +85,7 @@ function loaded(){
   button.mousePressed(togglePlaying);
 }
 
+// Toggle the button between playing and pausing the song
 function togglePlaying(){
   if(!song.isPlaying()){
     song.play();
@@ -92,8 +98,6 @@ function togglePlaying(){
 
 function draw() {
 
-  let level = amplitude.getLevel();
-
   // Draw the background circles
   for (let i = 0; i < backgroundCircles.length; i++) {
     fill(backgroundCircles[i].color);
@@ -103,6 +107,11 @@ function draw() {
 
   translate(-250, -100);// Move the origin point for rotation
   rotate(50);// Rotate the canvas to tilt the rows and columns
+
+  // Set the volume of the song based on the slider value
+  song.setVolume(slider.value());
+
+  let level = amplitude.getLevel(); // Get the current amplitude level of the song
 
   // Apply easing to smoothly interpolate the current radius to the target radius
   for (let circle of circles) {
@@ -115,13 +124,7 @@ function draw() {
   for (let circle of circles) {
     circle.display();
   }
-  
-  song.setVolume(slider.value());
-}
 
-function songEnded() {
-  // Handle what to do when the song ends
-  button.html("play");
 }
 
 // Create a class of circles for the wheels
