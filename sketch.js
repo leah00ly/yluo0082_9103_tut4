@@ -10,7 +10,7 @@ function setup() {
   createCanvas(500, 500);
   colorMode(HSB);
   background(200, 150, 60);
-  song = loadSound("sicklove.mp3", loaded);
+  song = loadSound("ACDC.mp3", loaded);
   amplitude = new p5.Amplitude();
   slider = createSlider(0,1,0.5,0.05);
   
@@ -106,7 +106,7 @@ function draw() {
   // Apply easing to smoothly interpolate the current radius to the target radius
   for (let circle of circles) {
     let easing = 0.5;
-    let targetRadius = map(level, 0, 1, 50, 80);
+    let targetRadius = map(level, 0, 1, 50, 100);
     circle.r = lerp(circle.r, targetRadius, easing);
   }
 
