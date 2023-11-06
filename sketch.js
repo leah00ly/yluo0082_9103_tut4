@@ -7,12 +7,13 @@ var slider;
 var amplitude;
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(700, 500);
   colorMode(HSB);
   background(200, 150, 60);
   song = loadSound("ACDC.mp3", loaded);
   amplitude = new p5.Amplitude();
   slider = createSlider(0,1,0.5,0.05);
+  
   
   // Initialize a counter to prevent infinite looping
   var protection = 0; 
@@ -100,12 +101,12 @@ function draw() {
     circle(backgroundCircles[i].x, backgroundCircles[i].y, backgroundCircles[i].r);
   }
 
-  translate(-200, -100);// Move the origin point for rotation
+  translate(-250, -100);// Move the origin point for rotation
   rotate(50);// Rotate the canvas to tilt the rows and columns
 
   // Apply easing to smoothly interpolate the current radius to the target radius
   for (let circle of circles) {
-    let easing = 0.5;
+    let easing = 0.4;
     let targetRadius = map(level, 0, 1, 50, 100);
     circle.r = lerp(circle.r, targetRadius, easing);
   }
