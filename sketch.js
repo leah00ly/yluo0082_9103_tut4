@@ -78,7 +78,7 @@ function songEnded() {
   button.html("play");
 }
 
-// Create a callback function to play the sound and make sure the button and the slider won't appear until the file is loaded
+// Create a callback function to play the sound and make sure the play button won't appear until the file is loaded
 function loaded(){
   console.log("loaded");
   button = createButton("play"); 
